@@ -4,6 +4,7 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Post_controller;
 use App\Http\Controllers\User_controller;
+use App\Http\Controllers\Register_screen;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,10 @@ use App\Http\Controllers\User_controller;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/register', function () {
+    return view('register');
+})->name('register');
 
 Route::get('/', function () {
     $posts = [];

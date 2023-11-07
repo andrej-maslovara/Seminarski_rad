@@ -8,9 +8,11 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 
 class User_controller extends Controller
-{   // registration system
+{   
+        // registration system
     public function register(Request $request) {
-        $input_reg = $request->validate([
+
+             $input_reg = $request->validate([
             'name' => ['required', 'min:3', 'max:25', Rule::unique('users', 'name')],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
             'password' => ['required', 'min:6', 'max:30']
@@ -20,7 +22,7 @@ class User_controller extends Controller
                         // or 'bcrypt' instead of 'Hash::make'
         $new_user = User::create($input_reg);
         auth()->login($new_user);
-        return redirect('/');
+        // return redirect('/');
     }
     // login system
     public function login(Request $request){
@@ -33,12 +35,12 @@ class User_controller extends Controller
                         'password' => $input_reg['login_password']])) 
         {
             $request->session()->regenerate();
-        }
-        return redirect ('/');} // change the redirect path
+        }}
+        // return redirect ('/');} // change the redirect path
 
     //logout system
     public function logout(){
         auth()->logout();
-        return redirect ('/');
+        // return redirect ('/');
     }
 }

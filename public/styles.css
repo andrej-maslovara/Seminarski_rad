@@ -6,6 +6,11 @@
         
     }
 
+    h2 {
+           color: white;
+           font-weight: bold;
+    }
+
     button {
         background-color: #4CAF50;
         border: 2px solid whitesmoke;
