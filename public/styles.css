@@ -3,16 +3,29 @@
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: cover;
+        /* background: rgb(199, 194, 191); */
         
     }
 
     h2 {
-           color: white;
-           font-weight: bold;
-    }
+        color: rgb(241, 6, 6);
+        font-weight: bold;
+ }
+
+ a {
+    text-decoration: line;
+    color: #3f34db; 
+    font-weight: bold;
+    font-size: 24px;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: rgba(236, 160, 8, 0.918);
+}
 
     button {
-        background-color: #4CAF50;
+        background-color: #da11bc;
         border: 2px solid whitesmoke;
         color: white;
         padding: 15px 32px;
@@ -110,7 +123,7 @@
         background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/Register_Background.jpg');
         background-repeat: no-repeat;
         background-attachment: fixed;
-        background-size: auto;
+        background-size: cover;
         
     }
 

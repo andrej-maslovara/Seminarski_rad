@@ -4,54 +4,75 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-class Post_controller extends Controller
-{
+class Post_controller extends Controller {
     public function createPost(Request $request){
-        $input_reg = $request->validate([
+        $input_data = $request->validate([
             'title' => 'required', 
-            'body' => 'required'
+            'body' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:5120'
         ]);
 
-        $input_reg['title'] = strip_tags($input_reg['title']);
-        $input_reg['body'] = strip_tags($input_reg['body']);
-        $input_reg['user_id'] = auth()->id();
-        Post::create($input_reg);
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time().'.'.$image->getClientOriginalExtension();
+            $image->storeAs('images', $imageName, 'public');
+            $input_data['image'] = $imageName;
+        }
+
+        $input_data['title'] = strip_tags($input_data['title']);
+        $input_data['body'] = strip_tags($input_data['body']);
+        $input_data['user_id'] = auth()->id();
+        Post::create($input_data);
+        
         return redirect('/');
     }
+
+    public function showPosts() {
+    $posts = Post::all();
+
+    return view('my-posts', ['posts' => $posts]);
+    }   
 
     public function showEditScreen(Post $post){
-        if(auth()->user()->id !== $post['user_id']){
-            return redirect('/');
-        }
+        if(auth()->user()->id === $post['user_id'] || auth()->user()->role_id === 1  || auth()->user()->role_id === 2)
+        {return view('edit-post', ['post' => $post]);}
+     else {return redirect('/');}}
 
-
-        return view('edit-post', ['post' => $post]);
-    }
-
-    public function actuallyUpdatePost(Post $post, Request $request){
-        if(auth()->user()->id !== $post['user_id']){
-            return redirect('/');
-        }
-
-        $input_reg = $request->validate([
-            'title'=>'required',
-            'body'=>'required'
-        ]);
-
-        $input_reg['title'] = strip_tags($input_reg['title']);
-        $input_reg['body'] = strip_tags($input_reg['body']);
-
-        $post->update($input_reg);
-        return redirect('/');
-    }
-
+     public function actuallyUpdatePost(Post $post, Request $request){
+         if (auth()->user()->id === $post['user_id'] || auth()->user()->role_id === 1 || auth()->user()->role_id === 2)
+         {$input_data = $request->validate([
+                 'title' => 'required',
+                 'body' => 'required'
+             ]);
+     
+             $input_data['title'] = strip_tags($input_data['title']);
+             $input_data['body'] = strip_tags($input_data['body']);
+     
+             if ($request->has('remove_image') && $post->image) {
+                 // Delete the existing image
+                 Storage::delete("public/storage/images/{$post->image}");
+                 $input_data['image'] = null; // Set image column to null
+             }
+     
+             // Check if a new image is provided
+             if ($request->hasFile('new_image')) {
+                 // Upload the new image
+                 $imagePath = $request->file('new_image')->store('public/images');
+                 $input_data['image'] = basename($imagePath);
+             }
+     
+             $post->update($input_data);
+             return redirect('/');
+         } else {
+             return redirect('/');
+         }
+     }
+     
     public function deletePost(Post $post){
-        if(auth()->user()->id === $post['user_id']){
-            $post->delete();
-        }
-
+        if (auth()->user()->id === $post['user_id'] || auth()->user()->role_id === 1 || auth()->user()->role_id === 2)
+        {$post->delete();}
         return redirect('/');
-
     }
 }
