@@ -8,31 +8,46 @@
     }
 
     h2 {
-        color: rgb(241, 6, 6);
+        color: rgb(184, 4, 31);
         font-weight: bold;
- }
+        text-decoration: underline;
+        }
 
- a {
+    a {
     text-decoration: line;
     color: #3f34db; 
     font-weight: bold;
     font-size: 24px;
     transition: color 0.3s ease;
-}
+        }
 
-a:hover {
+    a:hover {
     color: rgba(236, 160, 8, 0.918);
-}
+        }
 
     button {
-        background-color: #da11bc;
+        background-color: #94087f;
         border: 2px solid whitesmoke;
         color: white;
-        padding: 15px 32px;
+        padding: 10px 16px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 16px;
+        font-size: 14px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+      }
+
+      .delete_button {
+        background-color: red;
+        border: 2px solid whitesmoke;
+        color: white;
+        padding: 10px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
         margin: 4px 2px;
         transition-duration: 0.4s;
         cursor: pointer;
@@ -107,7 +122,7 @@ a:hover {
         border: 2px solid blue;
         text-align: center;
         color: white;
-        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/Login_Background.jpg');
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/Login_Background.jpg');
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: cover;
@@ -120,7 +135,7 @@ a:hover {
         border: 2px solid blue;
         text-align: center;
         color: white;
-        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/Register_Background.jpg');
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/Register_Background.jpg');
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: cover;
@@ -137,4 +152,30 @@ a:hover {
         padding: 20px;
         text-align: center;
         width: 80%;
+    }
+
+    .name {
+        font-family: Verdana, sans-serif;
+        color: rgb(54, 2, 70);
+        font-size: 20px;
+    }
+    
+    .role {
+        font-family: Helvetica, sans-serif;
+        color: #ab2121;
+        font-size: 18px;
+    }
+
+    .post_title {
+        font-family: Helvetica, sans-serif;
+        color: rgb(9, 134, 211);
+        font-size: 22px;
+        text-decoration: underline;
+    }
+
+    .post_body {
+        font-family: Helvetica, sans-serif;
+        color: rgb(168, 211, 9);
+        font-size: 20px;
+        border: 1px solid rgb(48, 1, 104);
     }

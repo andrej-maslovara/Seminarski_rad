@@ -33,6 +33,9 @@
     </form>
   @endif
 </section>
+  @if(session('success'))
+    <p style="color: limegreen; font-size: 24px;">{{ session('success') }}</p>
+  @endif
 <br>
 <a href="{{ url('/') }}"><button>< Go Back</button></a>
 

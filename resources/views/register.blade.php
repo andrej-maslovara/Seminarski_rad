@@ -22,5 +22,7 @@
         </table>
       </form>
     </section>
+  <br>
+    <a href="{{ url('/') }}" style="display: block; text-align: center;"><button>< Go Back</button></a>
    </body>
 </html>

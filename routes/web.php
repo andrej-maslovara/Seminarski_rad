@@ -18,9 +18,14 @@ use App\Http\Controllers\oneTimeController;
 |
 */
 
+// Href redirectings
 Route::get('/register', function () {
     return view('register');
 })->name('register');
+
+Route::get('/create-post', function () {
+    return view('create-post');
+})->name('create-post');
 
 Route::get('/', function () {
     $posts = Post::all();
@@ -34,6 +39,13 @@ Route::get('/my-posts', function () {
     return view('my-posts', ['posts' => $posts]);
 });
 
+Route::get('/all-posts', function () {
+    $posts = [];
+    $posts = Post::all();
+    return view('all-posts', ['posts' => $posts]);
+});
+
+
 // Entry system
 Route::post('/register', [User_controller::class, 'register']);
 Route::post('/logout', [User_controller::class, 'logout']);
@@ -45,11 +57,19 @@ Route::get('/edit-post/{post}', [Post_controller::class, 'showEditScreen']);
 Route::put('/edit-post/{post}', [Post_controller::class, 'actuallyUpdatePost']);
 Route::delete('/delete-post/{post}', [Post_controller::class, 'deletePost']);
 
-// Roles created successfully. ->
-Route::get('/create-roles', [oneTimeController::class, 'createRoles']);
 
+//Admin user editing
 Route::get('/assign-role', [User_controller::class, 'assignRoleToUser']);
 
 Route::post('/assign-role', [User_Controller::class, 'assignRole'])->name('assign-role');
 
 Route::delete('/delete-user/{user}', [User_controller::class, 'deleteUser'])->name('delete-user');
+
+//Non-admin post and user views and editing
+Route::get('/user-list', [User_controller::class, 'showUserList'])->name('user-list');
+
+Route::get('/users-posts/{userId}', [Post_controller::class, 'getUsersPosts'])->name('users-posts');
+
+Route::get('/edit-post/{id}', [Post_controller::class, 'showEditScreen'])->name('edit-post');
+
+Route::delete('/delete-post/{id}', [Post_controller::class, 'deletePost'])->name('delete-post');

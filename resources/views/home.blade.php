@@ -7,30 +7,56 @@
 </head>
 <body>
     @auth
-    <p style="color: navajowhite; font-weight: bold;
-    font-size: 20px;";>Welcome, you are logged in!</p></th></tr><br>
-
+    @if(!session('welcome_message_shown'))
+        <p style="color: navajowhite; font-weight: bold; font-size: 300px;">
+            Welcome, you are logged in!
+        </p>
+        {{ session(['welcome_message_shown' => true]) }}
+    @endif
+    
     @if(auth()->user()->role_id === 1)
-    <p style="color: white";> <a href="/assign-role">Show all Users</a> </p>
+    <p style="color: navajowhite; font-weight: bold;
+    font-size: 26px;";>Hello <span style="color: magenta; font-weight: bold; font-size: 30px;">Administrator</span>, what will it be today?</p>
+    <section style="border: 3px solid lightblue; padding: 10px; width: 25%; margin: 0 left;">
+
+        <a href="/assign-role" style="display: block; margin-bottom: 20px; border: 1px solid beige; padding: 10px;">Regulate Users</a> 
         @endif
-        <br>
-    <section style="border: 3px solid orange; padding: 10px;">
+        
+        @if(auth()->user()->role_id !== 1)
+        <p style="color: navajowhite; font-weight: bold;
+        font-size: 26px;";>Hello <span style="color: magenta; font-weight: bold; font-size: 30px;">{{ auth()->user()->name }}</span>, what will it be today?</p>
+        <br style="line-height: 40px;">
+        
+        <a href="/user-list" style="display: block; margin-bottom: 20px; border: 1px solid beige; padding: 10px;">Show all Users</a> 
+        @endif
+        <a href="/all-posts" style="display: block; margin-bottom: 20px; border: 1px solid beige; padding: 10px;">Show All Posts</a> 
+
+    </section>
+    <section style="border: 3px solid lightblue; padding: 10px; width: 25%; margin: 0 left;">
+
+        <a href="/my-posts" style="display: block; margin-bottom: 20px; border: 1px solid beige; padding: 10px;">Show my Posts</a> 
+
+        <a href="/create-post" style="display: block; margin-bottom: 20px; border: 1px solid beige; padding: 10px;">Create a Post</a> 
+       
+    </section>
+
+    <!-- <section style="border: 3px solid orange; padding: 10px;">
         <h2>Create a new post</h2>
         <form action="/create-post" method=POST enctype="multipart/form-data">
             @csrf
-            <input type="text" name="title" placeholder="post title" style="width: 20%";><br><br>
-            <textarea name="body" cols="40" rows="7" placeholder="add text here"></textarea><br><br>
+            <input type="text" name="title" placeholder="post title" style="width: 300%";><br><br>
+            <textarea name="body" cols="100" rows="7" placeholder="add text here"></textarea><br><br>
             <button>Submit Post</button><br><br>
         
             <input style="color: white"; type="file" name="image" accept="image/*"><br><br>
         </form>
-    </section>
+    </section> -->
 
-    <section>
+    <!-- <section>
         <h2>All Posts</h2>
         @foreach($posts as $post)
         <section style="background-color: DimGrey; padding: 10px; margin: 10px;">
-            <h3>{{$post['title']}} by {{$post->user->name}}</h3>
+            <h3>{{$post['title']}} by {{$post->user->name}} - {{$post->user->role}}</h3>
             <p>{{$post['body']}}</p>
             @if($post['image'])
             <img src="{{ asset('storage/images/' . $post['image']) }}" alt="Post Image" style="max-width: 15%;">
@@ -50,11 +76,8 @@
             @endif
            </section>
         @endforeach
-        
-        <p style="color: white"><a href="/my-posts">Show my Posts</a></p>
-
-    </section>
-
+    </section> -->
+    <br style="line-height: 50px;">
     <section>
         <form action="/logout" method="POST">
         @csrf
@@ -83,7 +106,7 @@
         <form action="{{ route('register') }}" method="GET">
           <table>
             <th><tr>
-            <h2>Don't have an account?</h2><br>
+            <h2 style="color: chocolate;">Don't have an account?</h2><br>
             </th></tr><br>
                 @csrf
               <button type="submit" name="registerButton">Register here</button>

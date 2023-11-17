@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -26,7 +27,7 @@ class Post_controller extends Controller {
         $input_data['user_id'] = auth()->id();
         Post::create($input_data);
         
-        return redirect('/');
+        return redirect('/create-post');
     }
 
     public function showPosts() {
@@ -34,6 +35,12 @@ class Post_controller extends Controller {
 
     return view('my-posts', ['posts' => $posts]);
     }   
+
+    public function showAllPosts() {
+        $posts = Post::all();
+    
+        return view('all-posts', ['posts' => $posts]);
+        }   
 
     public function showEditScreen(Post $post){
         if(auth()->user()->id === $post['user_id'] || auth()->user()->role_id === 1  || auth()->user()->role_id === 2)
@@ -64,15 +71,26 @@ class Post_controller extends Controller {
              }
      
              $post->update($input_data);
-             return redirect('/');
+             return back()->with('success', 'Post changed successfully.');
          } else {
-             return redirect('/');
+             return back();
          }
      }
      
     public function deletePost(Post $post){
         if (auth()->user()->id === $post['user_id'] || auth()->user()->role_id === 1 || auth()->user()->role_id === 2)
         {$post->delete();}
-        return redirect('/');
+        return back()->with('success', 'Post deleted successfully.');
+    }
+
+    public function getUsersPosts($userId)
+    {
+        // Retrieve the user
+        $user = User::findOrFail($userId);
+
+        // Retrieve the user's posts
+        $posts = Post::where('user_id', $userId)->get();
+
+        return view('users-posts', compact('user', 'posts'));
     }
 }

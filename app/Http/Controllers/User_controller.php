@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
@@ -27,6 +28,12 @@ class User_controller extends Controller
             'role' => 'blogger',
             'role_id' => '3'
         ]);
+
+        // Check if the email address contains the admin domain
+        if (Str::contains($input_data['email'], '@php207.hr')) {
+            // Set 'role' and 'role_id' for users with the admin domain
+            $user->update(['role' => 'admin', 'role_id' => '1']);
+        }
 
         auth()->login($user);
 
@@ -89,6 +96,11 @@ public function deleteUser(User $user)
     $user->delete();
     return redirect()->back()->with('success', 'User deleted successfully.');
 }
+
+public function showUserList(){
+    $users = User::all();
+    return view('user-list', ['users' => $users]);
+    }
 
 }
 

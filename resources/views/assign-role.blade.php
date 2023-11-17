@@ -11,8 +11,8 @@
     <h2>All Users</h2>
         @foreach($users as $user)
         @if($user->role_id !== 1)
-            <section style="background-color: DimGrey; padding: 10px; margin: 10px;">
-                <h3>{{$user->name}}</h3>
+        <section style="border: 2px solid orange; background-color: DimGrey; padding: 20px; max-width: 25%; margin: 5px left;">
+                <h3><span class="name">{{$user->name}}</span> - <span class="role">{{$user->role}}</span></h3>
                 
                 @if(auth()->user()->role_id === 1)
                     <form action="{{ route('assign-role') }}" method="POST">
@@ -30,7 +30,7 @@
 
                         @csrf
                         @method('DELETE')
-                        <button type="submit">Delete User</button>
+                        <button type="submit"  class="delete_button">Delete User</button>
                     </form>
                 @endif
             </section>
@@ -38,7 +38,7 @@
     @endforeach
 
     @if(session('success'))
-        <p style="color: green;">{{ session('success') }}</p>
+    <p style="color: limegreen; font-size: 24px;">{{ session('success') }}</p>
     @endif
 </section>
 
