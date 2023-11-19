@@ -8,7 +8,7 @@
 <body>
     @auth
     @if(!session('welcome_message_shown'))
-        <p style="color: navajowhite; font-weight: bold; font-size: 300px;">
+        <p style="color: navajowhite; font-weight: bold; font-size: 20px;">
             Welcome, you are logged in!
         </p>
         {{ session(['welcome_message_shown' => true]) }}
@@ -19,7 +19,10 @@
     font-size: 26px;";>Hello <span style="color: magenta; font-weight: bold; font-size: 30px;">Administrator</span>, what will it be today?</p>
     <section style="border: 3px solid lightblue; padding: 10px; width: 25%; margin: 0 left;">
 
-        <a href="/assign-role" style="display: block; margin-bottom: 20px; border: 1px solid beige; padding: 10px;">Regulate Users</a> 
+        <a href="/assign-role" style="display: block; margin-bottom: 20px; border: 1px solid beige; padding: 10px;">Regulate Users roles</a>
+        
+        <a href="/roles" style="display: block; margin-bottom: 20px; border: 1px solid beige; padding: 10px;">Regulate Roles</a> 
+
         @endif
         
         @if(auth()->user()->role_id !== 1)

@@ -18,13 +18,18 @@
                     <form action="{{ route('assign-role') }}" method="POST">
                         @csrf
                         <input type="hidden" name="user_id" value="{{ $user->id }}">
-                        
+                    
                         <label for="role">Select Role:</label>
-                        <input type="radio" name="role" value="admin"> Admin
-                        <input type="radio" name="role" value="editor"> Editor
-                        <input type="radio" name="role" value="blogger"> Blogger
+                        <ul>
+                        @foreach($roles as $role)
+                            <li>
+                                <input type="radio" name="role" value="{{ $role->name }}" @if($user->role === $role->name) checked @endif> {{ $role->name }}
+                            </li>
+                        @endforeach
+                        </ul>
                         <button type="submit">Assign Role</button>
                     </form>
+
                     <form action="{{ route('delete-user', ['user' => $user->id]) }}" method="POST" 
                     onsubmit="return confirm('Are you sure you want to delete this user?');">
 

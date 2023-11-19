@@ -8,7 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Schema;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Events\RoleDeleted;
+use Illuminate\Database\Schema\Blueprint;
 
 class User_controller extends Controller
 {   
@@ -25,8 +28,8 @@ class User_controller extends Controller
             'name' => $input_data['name'],
             'email' => $input_data['email'],
             'password' => bcrypt($input_data['password']),
-            'role' => 'blogger',
-            'role_id' => '3'
+            'role' => 'No role',
+            'role_id' => NULL
         ]);
 
         // Check if the email address contains the admin domain
@@ -58,39 +61,7 @@ class User_controller extends Controller
         auth()->logout();
         return redirect ('/');
     }
-     
-
-public function assignRoleToUser(Request $request)
-{
-    $users = User::all();
-    return view('/assign-role', ['users' => $users]);}
-
-
-public function assignRole(Request $request)
-{
-    // Validate the request
-    $request->validate([
-        'user_id' => 'required|exists:users,id',
-        'role' => 'required|in:admin,editor,blogger',
-    ]);
-
-    $roleMappings = [
-        'admin' => 1,
-        'editor' => 2,
-        'blogger' => 3,
-    ];
-
-    // Find the user
-    $user = User::findOrFail($request->user_id);
-
-    // Update the user's role
-    $user->update([
-        'role' => $request->role,
-        'role_id' => $roleMappings[$request->role],]);
-
-    return redirect()->back()->with('success', 'Role assigned successfully.');
-}
-  
+ 
 public function deleteUser(User $user)
 {
     $user->delete();
@@ -103,13 +74,3 @@ public function showUserList(){
     }
 
 }
-
-        // Potential user checkup:
-
-// [if (auth()->user()->can('create')) {
-//     // User has the 'create' permission, allow them to perform the action
-// } else {
-//     // User does not have the 'create' permission, deny the action
-// }]
-
-

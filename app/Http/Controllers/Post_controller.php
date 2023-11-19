@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class Post_controller extends Controller {
+
+    //Creating a post/blog
     public function createPost(Request $request){
         $input_data = $request->validate([
             'title' => 'required', 
@@ -30,6 +32,7 @@ class Post_controller extends Controller {
         return redirect('/create-post');
     }
 
+    //Post listing
     public function showPosts() {
     $posts = Post::all();
 
@@ -42,6 +45,7 @@ class Post_controller extends Controller {
         return view('all-posts', ['posts' => $posts]);
         }   
 
+        //Editing posts
     public function showEditScreen(Post $post){
         if(auth()->user()->id === $post['user_id'] || auth()->user()->role_id === 1  || auth()->user()->role_id === 2)
         {return view('edit-post', ['post' => $post]);}
@@ -83,12 +87,11 @@ class Post_controller extends Controller {
         return back()->with('success', 'Post deleted successfully.');
     }
 
+    //Listing the specified users posts
     public function getUsersPosts($userId)
     {
-        // Retrieve the user
         $user = User::findOrFail($userId);
 
-        // Retrieve the user's posts
         $posts = Post::where('user_id', $userId)->get();
 
         return view('users-posts', compact('user', 'posts'));

@@ -59,11 +59,18 @@ Route::delete('/delete-post/{post}', [Post_controller::class, 'deletePost']);
 
 
 //Admin user editing
-Route::get('/assign-role', [User_controller::class, 'assignRoleToUser']);
+Route::get('/assign-role', [Role_controller::class, 'getAllRoles'])->name('assign-role');
 
-Route::post('/assign-role', [User_Controller::class, 'assignRole'])->name('assign-role');
+Route::post('/assign-role', [Role_Controller::class, 'assignRole'])->name('assign-role');
+
+Route::get('/roles', [Role_controller::class, 'showRolesPage'])->name('roles');
+
+Route::delete('/delete-role/{role}', [Role_controller::class, 'deleteRole'])->name('delete-role');
 
 Route::delete('/delete-user/{user}', [User_controller::class, 'deleteUser'])->name('delete-user');
+
+Route::post('/create-role', [Role_controller::class, 'createRole'])->name('create-role');
+
 
 //Non-admin post and user views and editing
 Route::get('/user-list', [User_controller::class, 'showUserList'])->name('user-list');
