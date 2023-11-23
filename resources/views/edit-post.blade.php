@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ asset('styles.css') }}">
 </head>
 <body>
-<section>
+<section style="border: 2px solid orange; background-color: DimGrey; padding: 20px; max-width: 25%; margin: 5px left;">
   @if(auth()->user()->id === $post->user_id || auth()->user()->role_id === 1 || auth()->user()->role_id === 2)
     <h1>Edit Post</h1>
     <form action="/edit-post/{{$post->id}}" method="POST" enctype="multipart/form-data">

@@ -1,13 +1,13 @@
 <?php
 
 use App\Models\Post;
-use App\Models\Element;
+use App\Models\Navigation;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Page_controller;
 use App\Http\Controllers\Post_controller;
 use App\Http\Controllers\Role_controller;
 use App\Http\Controllers\User_controller;
-use App\Http\Controllers\Element_controller;
+use App\Http\Controllers\NavigationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,6 +91,16 @@ Route::post('/create-role', [Role_controller::class, 'createRole'])->name('creat
 
     Route::post('/create-page', [Page_controller::class, 'createPage'])->name('create-page');
 
+
+//Admin navigation editing
+
+Route::get('/navigation', [NavigationController::class, 'index'])->name('navigation.index');
+
+Route::post('/navigation/store', [NavigationController::class, 'store'])->name('navigation.store');
+
+Route::put('/navigation/{navigation}/update', [NavigationController::class, 'update'])->name('navigation.update');
+
+Route::delete('/navigation/{navigation}/destroy', [NavigationController::class, 'destroy'])->name('navigation.destroy');
 
 //Non-admin post and user views and editing
 Route::get('/user-list', [User_controller::class, 'showUserList'])->name('user-list');

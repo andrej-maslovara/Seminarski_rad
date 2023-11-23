@@ -25,6 +25,8 @@
 
         <a href="/manager" style="display: block; margin-bottom: 20px; border: 1px solid beige; padding: 10px;">Page manager</a> 
 
+        <a href="/navigation" style="display: block; margin-bottom: 20px; border: 1px solid beige; padding: 10px;">Navigation manager</a> 
+
         @endif
         
         @if(auth()->user()->role_id !== 1)
