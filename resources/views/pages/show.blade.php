@@ -25,10 +25,8 @@
 
 
 <script>
-    // Add a click event listener to specific clickable elements
     document.addEventListener('DOMContentLoaded', function() {
     document.body.addEventListener('click', function(e) {
-        // Check if the clicked element is NOT the goBackLink
         if (!e.target.closest('#goBackLink')) {
             e.preventDefault();
         }

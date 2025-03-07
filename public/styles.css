@@ -1,181 +1,216 @@
-    body {
-        background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('images/body_image.jpg');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-        /* background: rgb(199, 194, 191); */
-        
-    }
+:root{
+font-size: 62.5%;
+scroll-behavior: smooth; 
 
-    h2 {
-        color: rgb(184, 4, 31);
-        font-weight: bold;
-        text-decoration: underline;
-        }
+}
 
-    a {
-    text-decoration: line;
-    color: #3f34db; 
-    font-weight: bold;
-    font-size: 24px;
-    transition: color 0.3s ease;
-        }
+body {
+background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('images/body_image.jpg');
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+/* background: rgb(199, 194, 191); */
 
-    a:hover {
-    color: rgba(236, 160, 8, 0.918);
-        }
+}
 
-    button {
-        background-color: #94087f;
-        border: 2px solid whitesmoke;
-        color: white;
-        padding: 10px 16px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 14px;
-        margin: 4px 2px;
-        transition-duration: 0.4s;
-        cursor: pointer;
-      }
+h2 {
+color: rgb(184, 4, 31);
+font-weight: bold;
+text-decoration: underline;
+}
 
-      .delete_button {
-        background-color: red;
-        border: 2px solid whitesmoke;
-        color: white;
-        padding: 10px 16px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 14px;
-        margin: 4px 2px;
-        transition-duration: 0.4s;
-        cursor: pointer;
-      }
+a {
+text-decoration: line;
+color: #3f34db; 
+font-weight: bold;
+font-size: 2.4rem;
+transition: color 0.3s ease;
+}
 
-    input[type=text] {
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        box-sizing: border-box;
-        border: 2px solid #ccc;
-        border-radius: 4px;
-    }
-    input[type=email] {
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        box-sizing: border-box;
-        border: 2px solid #ccc;
-        border-radius: 4px;
-    }
-    input[type=password] {
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        box-sizing: border-box;
-        border: 2px solid #ccc;
-        border-radius: 4px;
-    }
+a:hover {
+color: rgba(236, 160, 8, 0.918);
+}
 
-    table {
-        width: 100px;
-        border-collapse: collapse;
-        color: black;
-        font: 25px Arial, sans-serif, bold;
-    }
+p{
+color: navajowhite; 
+font-weight: bold;
+font-size: 1.2rem;
+}
 
-    th, td {
-        padding: 10px;
-        text-align: left;
-    }
+span{
+color: magenta; 
+font-weight: bold; 
+font-size: 3rem;
+}
 
-    th {
-        color: white;
-    }
+button {
+background-color: #94087f;
+border: 0.2rem solid whitesmoke;
+color: white;
+padding: 1rem 1.6rem;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 1.4rem;
+margin: 0.4rem 0.2rem;
+transition-duration: 0.4s;
+cursor: pointer;
+}
 
-    .input-field {
-        width: 150%;
-        padding: 8px;
-        margin: 5px 0 22px 0;
-        display: inline-block;
-        border: none;
-        background: lightblue;
-    }
+.delete_button {
+background-color: red;
+border: 0.2rem solid whitesmoke;
+color: white;
+padding: 1rem 1.6rem;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 1.4rem;
+margin: 0.4rem 0.2rem;
+transition-duration: 0.4s;
+cursor: pointer;
+}
 
-    .btn {
-        background-color: green;
-        color: white;
-        padding: 10px 15px;
-        border: none;
-        cursor: pointer;
-        width: 100%;
-    }
+input[type=text] {
+width: 100%;
+padding: 1.2rem 2rem;
+margin: 0.8rem 0;
+box-sizing: border-box;
+border: 0.2rem solid #ccc;
+border-radius: 0.4rem;
+}
+input[type=email] {
+width: 100%;
+padding: 1.2rem 2rem;
+margin: 0.8rem 0;
+box-sizing: border-box;
+border: 0.2rem solid #ccc;
+border-radius: 0.4rem;
+}
+input[type=password] {
+width: 100%;
+padding: 1.2rem 2rem;
+margin: 0.8rem 0;
+box-sizing: border-box;
+border: 0.2rem solid #ccc;
+border-radius: 0.4rem;
+}
 
-    .btn:hover {
-        background-color: green;
-    }
-    .login-container {
-        width: 40%;
-        margin: auto;
-        padding: 20px;
-        border: 2px solid blue;
-        text-align: center;
-        color: white;
-        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/Login_Background.jpg');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-        
-    }
-    .register-container {
-        width: 40%;
-        margin: auto;
-        padding: 20px;
-        border: 2px solid blue;
-        text-align: center;
-        color: white;
-        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/Register_Background.jpg');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-        
-    }
+.basic_container{
+border: 0.3 solid lightblue; 
+padding: 1rem; 
+width: 25%; 
+margin: 0 auto;
+}
 
-    .login_table {
-        padding: 20px;
-        text-align: center;
-        width: 80%;
-    }
+.basic_container a{
+display: block; 
+margin-bottom: 2rem; 
+border: 0.1rem solid beige; 
+padding: 1rem;
+}
 
-    .register_table {
-        padding: 20px;
-        text-align: center;
-        width: 80%;
-    }
+.log_out{
+margin: 5rem auto 0;
+}
+table {
+width: 10rem;
+border-collapse: collapse;
+color: black;
+font: 2.6rem Arial, sans-serif, bold;
+}
 
-    .name {
-        font-family: Verdana, sans-serif;
-        color: rgb(54, 2, 70);
-        font-size: 20px;
-    }
-    
-    .role {
-        font-family: Helvetica, sans-serif;
-        color: #ab2121;
-        font-size: 18px;
-    }
+th, td {
+padding: 1rem;
+text-align: left;
+}
 
-    .post_title {
-        font-family: Helvetica, sans-serif;
-        color: rgb(9, 134, 211);
-        font-size: 22px;
-        text-decoration: underline;
-    }
+th {
+color: white;
+}
 
-    .post_body {
-        font-family: Helvetica, sans-serif;
-        color: rgb(168, 211, 9);
-        font-size: 20px;
-        border: 1px solid rgb(48, 1, 104);
-    }
+.input-field {
+width: 150%;
+padding: 0.8rem;
+margin: 0.5rem 0 2.2rem 0;
+display: inline-block;
+border: none;
+background: lightblue;
+}
+
+.btn {
+background-color: green;
+color: white;
+padding: 1rem 1.4rem;
+border: none;
+cursor: pointer;
+width: 100%;
+}
+
+.btn:hover {
+background-color: green;
+}
+.login-container {
+width: 40%;
+margin: auto;
+padding: 2rem;
+border: 0.2rem solid blue;
+text-align: center;
+color: white;
+background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/Login_Background.jpg');
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+
+}
+.register-container {
+width: 40%;
+margin: auto;
+padding: 2rem;
+border: 0.2rem solid blue;
+text-align: center;
+color: white;
+background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/Register_Background.jpg');
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+
+}
+
+.login_table {
+padding: 2rem;
+text-align: center;
+width: 80%;
+}
+
+.register_table {
+padding: 2rem;
+text-align: center;
+width: 80%;
+}
+
+.name {
+font-family: Verdana, sans-serif;
+color: rgb(54, 2, 70);
+font-size: 2rem;
+}
+
+.role {
+font-family: Helvetica, sans-serif;
+color: #ab2121;
+font-size: 1.8rem;
+}
+
+.post_title {
+font-family: Helvetica, sans-serif;
+color: rgb(9, 134, 211);
+font-size: 20.2rem;
+text-decoration: underline;
+}
+
+.post_body {
+font-family: Helvetica, sans-serif;
+color: rgb(168, 211, 9);
+font-size: 2rem;
+border: 0.2rem solid rgb(48, 1, 104);
+}
